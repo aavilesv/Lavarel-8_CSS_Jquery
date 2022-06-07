@@ -1,0 +1,1 @@
+ <a href="<?php echo e(route('cantons.editar', $id)); ?>" class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a><?php /**PATH C:\xampp\htdocs\AppQuantika\resources\views/cantons/datatable/btn.blade.php ENDPATH**/ ?>

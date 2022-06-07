@@ -1,0 +1,1 @@
+ <a href="{{ route('cantons.editar', $id) }}" class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>

@@ -1,0 +1,64 @@
+@page{
+   
+    margin:0cm 0cm;
+    font-size: 1em;
+}
+body{
+    margin: 3cm 2cm 2cm;
+}
+header{
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    background-color: #46C66B;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 2cm;
+    background-color:  #46C66B;
+    color: white;
+    text-align: center;
+    line-height: 35px;
+}
+hr{
+    page-break-after: always;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+img{
+    position: fixed;
+top: -0.13cm;
+left: 17cm;
+right: 0cm;
+height: 2cm;
+width: 40%;
+line-height: 30px;
+}
+
+.estilo{
+    position: fixed;
+    top: 34px;
+    left: 22cm;
+    right: 0cm;
+    height: 2cm;
+    
+}
+
+.nombr{
+    position: fixed;
+    top: 24px;
+    left: -3.8cm;
+    right: 0cm;
+    height: 2cm;
+    
+}
