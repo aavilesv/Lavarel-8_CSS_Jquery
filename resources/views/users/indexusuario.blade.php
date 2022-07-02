@@ -16,7 +16,7 @@
                         <i class="fa fa-edit"> Editar</i></a>
                         <a class="btn btn-success btn-md btn-round ml-auto" 
                         data-toggle="tooltip" data-original-title="Cambiar"
-                        href="{{ route('usuario.cambiocontraseña') }}">
+                        href="{{ route('usuario.cambiocontrasena') }}">
                         <i class="fas fa-undo"> Cambiar Contraseña</i></a>
 
                 </div>

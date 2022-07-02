@@ -81,9 +81,11 @@
                     'cajadetalles.fechainicio', 'cajadetalles.fechafinal', 'cajadetalles.monto','cajadetalles.usuariocreado', 
                     'cajadetalles.abonado', 'cajadetalles.status', 'cajadetalles.created_at')->orderBy('cajadetalles.id')->get();
                 $cobroextra = Cajaextra::join('cajas', 'cajas.id', '=', 'cajaextras.caja_id')
-                    ->where('cajas.id', '=',  $cajaa->id)->get();
+                    ->where('cajas.id', '=',  $cajaa->id) ->select('cajaextras.id','cajaextras.descripcion'
+                    ,'cajaextras.nombre','cajaextras.ingresapor','cajaextras.caja_id','cajaextras.monto','cajaextras.observacion'
+                    ,'cajaextras.factura' ,'cajaextras.recibo' ,'cajaextras.online' ,'cajaextras.image','cajaextras.usuariocreado')->get();
                 
-    
+
                 $totalgasto = Gastocaja::join('cajas', 'cajas.id', '=', 'gastocajas.caja_id')
                     ->where('cajas.id', '=', $cajaa->id)
                     ->select('cajas.id', DB::raw('SUM(gastocajas.monto) as total_sales'))
@@ -126,6 +128,7 @@
             DB::beginTransaction();
             try {
                 $gasto = Gastocaja::create($request->all());
+                $gasto->usuariocreado=auth()->user()->nombre . " " . auth()->user()->apellido;;
                 if ($request->image) {
                     $image = $request->file('image')->store('public/gastoimage');
                     $url = Storage::url($image);
@@ -145,7 +148,7 @@
     
     
     
-                return redirect()->route('reportecaja.index');
+                return  redirect()->back();
             } catch (\Exception $exception) {
                 DB::rollback();
                 return  redirect()->back()->with('error', "Error" . $exception->getMessage());

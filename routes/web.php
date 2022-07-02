@@ -58,7 +58,9 @@ use App\Http\Controllers\soporte\PdfControllerr;
 use App\Http\Controllers\soporte\reportefibra;
 use App\Http\Controllers\soporte\reporteradio;
 use App\Http\Controllers\soporte\soporteController;
-
+use App\Http\Controllers\cajareporteultimo\utimocliente;
+use App\Http\Controllers\cajareporteultimo\utimoextras;
+use App\Http\Controllers\cajareporteultimo\utimogastos;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -163,6 +165,9 @@ Route::resource('gerente',gerentecontroller::class)->middleware('auth');
 Route::resource('mostrarclientecobrar',mostrarclientescobrar::class)->middleware('auth');
 
 
+Route::resource('ultimocliente',utimocliente::class)->middleware('auth');
+Route::resource('ultimoextras',utimoextras::class)->middleware('auth');
+Route::resource('ultimogastos',utimogastos::class)->middleware('auth');
 // gerente deja en caja
 Route::resource('reportecaja',cajareportecontroller::class)->middleware('auth');
 Route::resource('reportedit',reporteeditcontroller::class)->middleware('auth');
@@ -225,7 +230,7 @@ Route::get('pdfnovedad/{id}',[PdfControllerr::class,'novedadgetone'])->name('pdf
 // ccambio dee contraseña
 // usuario 
 Route::get('usuario',[UsuarioController::class,'index'])->name('usuario.index')->middleware('auth');
-Route::get('usuario/cambiocontraseña',[UsuarioController::class,'cambiocontraseña'])->name('usuario.cambiocontraseña')->middleware('auth');
+Route::get('usuario/cambiocontrasena',[UsuarioController::class,'cambiocontrasena'])->name('usuario.cambiocontrasena')->middleware('auth');
 Route::post('usuario/cambiar',[UsuarioController::class,'cambiar'])->name('usuario.cambiar')->middleware('auth');
 Route::get('usuario/{user}/editar', [UsuarioController::class,'editar'])->name('usuario.editar')->middleware('auth');
 Route::put('usuario/{user}', [UsuarioController::class,'update'])->name('usuario.update')->middleware('auth');

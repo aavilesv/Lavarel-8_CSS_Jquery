@@ -1,6 +1,6 @@
-@extends('layouts.template')
-@section('title', 'Diario de Caja')
-@section('content')
+
+<?php $__env->startSection('title', 'Diario de Caja'); ?>
+<?php $__env->startSection('content'); ?>
     <div class="panel-header bg-primary-gradient">
         <div class="page-inner py-5">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
@@ -31,7 +31,8 @@
                                                 <div class="col-md-8">
                                                 </div>
                                                 <div class="col-md-4" style="font-weight: bold; font-size: 23px;">
-                                                    Fecha: {{ $cajaa->fecha }}
+                                                    Fecha: <?php echo e($cajaa->fecha); ?>
+
                                                 </div>
                                                 <br><br>
                                                 <div class="col-md-5">
@@ -48,7 +49,7 @@
                                                 <time class="date" datetime="9-25">Inicio en Caja</time>
                                                 <input type="text" id="fechadeposito" name="fechadeposito"
                                                     class="form-control input-border-bottom"
-                                                    value="${{ $cajaa->cajaprincipal }}"
+                                                    value="$<?php echo e($cajaa->cajaprincipal); ?>"
                                                     onKeyPress="return validar(event)" oncut="return false"
                                                     oncopy="return false" onpaste="return false" placeholder="requerido">
                                             </div>
@@ -58,7 +59,7 @@
                                                     día:</time>
                                                 <input type="text" id="fechadeposito" name="fechadeposito"
                                                     class="form-control input-border-bottom"
-                                                    value="${{ $cajaa->saldoingeniero }}"
+                                                    value="$<?php echo e($cajaa->saldoingeniero); ?>"
                                                     onKeyPress="return validar(event)" oncut="return false"
                                                     oncopy="return false" onpaste="return false" placeholder="requerido">
                                             </div>
@@ -67,7 +68,7 @@
                                                     gerencia</time>
                                                 <input type="text" id="fechadeposito" name="fechadeposito"
                                                     class="form-control input-border-bottom"
-                                                    value="${{ $cajaa->cajafinal }}" onKeyPress="return validar(event)"
+                                                    value="$<?php echo e($cajaa->cajafinal); ?>" onKeyPress="return validar(event)"
                                                     oncut="return false" oncopy="return false" onpaste="return false"
                                                     placeholder="requerido">
                                             </div>
@@ -75,7 +76,7 @@
                                                 <time class="date" datetime="9-25">Total en Caja</time>
                                                 <input type="text" id="fechadeposito" name="fechadeposito"
                                                     class="form-control input-border-bottom"
-                                                    value="${{ $cajaa->saldocaja }}" onKeyPress="return validar(event)"
+                                                    value="$<?php echo e($cajaa->saldocaja); ?>" onKeyPress="return validar(event)"
                                                     oncut="return false" oncopy="return false" onpaste="return false"
                                                     placeholder="requerido">
                                             </div>
@@ -87,7 +88,7 @@
                             <div class="table-responsive">
 
                                 <a class="btn btn-success btn-round ml-auto" data-toggle="tooltip" data-original-title="Ver"
-                                    href="{{ route('reportedit.edit', $cajaa->id) }}"><i class="fa fa-plus"></i>
+                                    href="<?php echo e(route('reportedit.edit', $cajaa->id)); ?>"><i class="fa fa-plus"></i>
                                     Ingresar Cobro a Clientes</a>
                                 <table id=""
                                     class="display table table-bordered table-head-bg-info table-bordered-bd-info mt-4 add-row">
@@ -103,19 +104,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($caja as $key => $caj)
+                                        <?php $__currentLoopData = $caja; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $caj): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td>{{ $caj->cuentasporcobrar->cclicontratocliente->cliente->nombre }}
-                                                    {{ $caj->cuentasporcobrar->cclicontratocliente->cliente->apellido }}
+                                                <td><?php echo e($caj->cuentasporcobrar->cclicontratocliente->cliente->nombre); ?>
+
+                                                    <?php echo e($caj->cuentasporcobrar->cclicontratocliente->cliente->apellido); ?>
+
                                                 </td>
-                                                <td>{{ $caj->fechainicio }}</td>
-                                                <td>{{ $caj->fechafinal }}</td>
-                                                <td>${{ $caj->monto }}</td>
-                                                <td>${{ $caj->abonado }}</td>
-                                                <td>{{ $caj->usuariocreado }}</td>
+                                                <td><?php echo e($caj->fechainicio); ?></td>
+                                                <td><?php echo e($caj->fechafinal); ?></td>
+                                                <td>$<?php echo e($caj->monto); ?></td>
+                                                <td>$<?php echo e($caj->abonado); ?></td>
+                                                <td><?php echo e($caj->usuariocreado); ?></td>
                                                 <td>
 
-                                                    <form action="{{ route('ultimocliente.edit', $caj->id) }}"
+                                                    <form action="<?php echo e(route('ultimocliente.edit', $caj->id)); ?>"
                                                         class="form-createe">
 
                                                         <button id="Dato-registrar" class="btn btn-link btn-primary btn-lg"
@@ -127,7 +130,7 @@
 
 
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -143,7 +146,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <button
-                                                    onclick="myFunction('{{ route('reportecaja.edit', $cajaa->id) }}')"
+                                                    onclick="myFunction('<?php echo e(route('reportecaja.edit', $cajaa->id)); ?>')"
                                                     href="#mdsucur" rel="action" data-toggle="modal" title="Ingresar"
                                                     data-backdrop="static" data-keyboard="false"
                                                     class="btn btn-success btn-border btn-round ml-auto">
@@ -155,9 +158,9 @@
                                                 <input type="text" id="gasto" name="gasto"
                                                     class="form-control input-border-bottom"
                                                     onKeyPress="return validar(event)"
-                                                    @if ($totalgasto) value="${{ $totalgasto->total_sales }}"    
-                                                            @else
-                                                            value="$0" @endif
+                                                    <?php if($totalgasto): ?> value="$<?php echo e($totalgasto->total_sales); ?>"    
+                                                            <?php else: ?>
+                                                            value="$0" <?php endif; ?>
                                                     oncut="return false" oncopy="return false" onpaste="return false"
                                                     placeholder="requerido">
                                             </div>
@@ -180,28 +183,28 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($gasto as $key => $gast)
+                                                    <?php $__currentLoopData = $gasto; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $gast): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr>
-                                                            <td>{{ $gast->nombre }}</td>
-                                                            <td>{{ $gast->descripcion }}</td>
-                                                            <td>${{ $gast->monto }}</td>
-                                                            <td>{{ $gast->observacion }}</td>
-                                                            <td>{{ $gast->soporte }}</td>
-                                                            <td>{{ $gast->factura }}</td>
+                                                            <td><?php echo e($gast->nombre); ?></td>
+                                                            <td><?php echo e($gast->descripcion); ?></td>
+                                                            <td>$<?php echo e($gast->monto); ?></td>
+                                                            <td><?php echo e($gast->observacion); ?></td>
+                                                            <td><?php echo e($gast->soporte); ?></td>
+                                                            <td><?php echo e($gast->factura); ?></td>
                                                             <td>
-                                                                <center> <a href="{{ asset($gast->image) }}"
+                                                                <center> <a href="<?php echo e(asset($gast->image)); ?>"
                                                                         data-lightbox="mygallery" data-title=""><img
-                                                                            src="{{ asset($gast->image) }}"
+                                                                            src="<?php echo e(asset($gast->image)); ?>"
                                                                             title="ver imagen" class="img-fluid center"
                                                                             alt="Responsive image"
                                                                             style="width:100px; height:50px;"></a>
                                                                 </center>
                                                             </td>
-                                                            <td>{{ $gast->usuariocreado }}</td>
+                                                            <td><?php echo e($gast->usuariocreado); ?></td>
                                                             <td>
 
                                                                 <form
-                                                                    action="{{ route('ultimogastos.edit', $gast->id) }}"
+                                                                    action="<?php echo e(route('ultimogastos.edit', $gast->id)); ?>"
                                                                     class="form-createe">
 
                                                                     <button id="Dato-registrar"
@@ -211,7 +214,7 @@
                                                                 </form>
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -228,7 +231,7 @@
                                     <div class="card-body">
                                         <a class="btn btn-success btn-round ml-auto" data-toggle="tooltip"
                                             data-original-title="Ver"
-                                            href="{{ route('cobroextra.show', $cajaa->id) }}"><i
+                                            href="<?php echo e(route('cobroextra.show', $cajaa->id)); ?>"><i
                                                 class="fa fa-plus"></i> Ingresar Cobros extras</a>
                                         <div class="table-responsive">
                                             <table
@@ -250,30 +253,30 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($cobroextra as $cobroextr)
+                                                    <?php $__currentLoopData = $cobroextra; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cobroextr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr>
-                                                            <td>{{ $cobroextr->nombre }} {{ $cobroextr->id }}</td>
-                                                            <td>{{ $cobroextr->descripcion }}</td>
-                                                            <td>{{ $cobroextr->ingresapor }}</td>
-                                                            <td>{{ $cobroextr->caja->fecha }}</td>
-                                                            <td>${{ $cobroextr->monto }}</td>
-                                                            <td>{{ $cobroextr->observacion }}</td>
-                                                            <td>{{ $cobroextr->factura }}</td>
-                                                            <td>{{ $cobroextr->recibo }}</td>
-                                                            <td>{{ $cobroextr->online }}</td>
+                                                            <td><?php echo e($cobroextr->nombre); ?> <?php echo e($cobroextr->id); ?></td>
+                                                            <td><?php echo e($cobroextr->descripcion); ?></td>
+                                                            <td><?php echo e($cobroextr->ingresapor); ?></td>
+                                                            <td><?php echo e($cobroextr->caja->fecha); ?></td>
+                                                            <td>$<?php echo e($cobroextr->monto); ?></td>
+                                                            <td><?php echo e($cobroextr->observacion); ?></td>
+                                                            <td><?php echo e($cobroextr->factura); ?></td>
+                                                            <td><?php echo e($cobroextr->recibo); ?></td>
+                                                            <td><?php echo e($cobroextr->online); ?></td>
                                                             <td>
-                                                                <center> <a href="{{ asset($cobroextr->image) }}"
+                                                                <center> <a href="<?php echo e(asset($cobroextr->image)); ?>"
                                                                         data-lightbox="mygallery" data-title=""><img
-                                                                            src="{{ asset($cobroextr->image) }}"
+                                                                            src="<?php echo e(asset($cobroextr->image)); ?>"
                                                                             title="ver imagen" class="img-fluid center"
                                                                             alt="Responsive image"
                                                                             style="width:100px; height:50px;"></a>
                                                                 </center>
                                                             </td>
-                                                            <td>{{ $cobroextr->usuariocreado }}</td>
+                                                            <td><?php echo e($cobroextr->usuariocreado); ?></td>
                                                             <td>
                                                                 <form
-                                                                    action="{{ route('ultimoextras.edit', $cobroextr->id) }}"
+                                                                    action="<?php echo e(route('ultimoextras.edit', $cobroextr->id)); ?>"
                                                                     class="form-createe">
                                                                     <button id="Dato-registrar"
                                                                         class="btn btn-link btn-primary btn-lg"
@@ -284,7 +287,7 @@
                                                             </td>
 
                                                         </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -305,8 +308,8 @@
     </div>
 
 
-@endsection
-@section('scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('scripts'); ?>
     <script>
         $('.form-createe').submit(function(e) {
             e.preventDefault();
@@ -347,4 +350,6 @@
             return false;
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH G:\xampp\htdocs\AppQuantika\resources\views/cajareporte/show.blade.php ENDPATH**/ ?>
